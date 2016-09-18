@@ -11,6 +11,9 @@ WORKDIR /usr/src/app
 # Set Entrypoint
 ENTRYPOINT ["python", "./runserver.py", "-H", "0.0.0.0", "-P", "80"]
 
+# Set default options when container is run without any command line arguments
+CMD ["--db", "mysql://user:passwd@ip:port/my_db"]
+
 # Install required system packages
 RUN apk add --no-cache ca-certificates
 RUN apk add --no-cache bash git openssh
