@@ -164,7 +164,6 @@ function initMap() {
         streetViewControl: false,
         disableAutoPan: true
     });
-
     updateScanLocations(initialScanLocations);
     updateMap();
     updateHeatMap();
@@ -227,20 +226,13 @@ function pokemonLabel(name, id, disappear_time, latitude, longitude) {
 
     var label = "<div>\
             <b>" +name+ "</b>\
-            <span> - </span>\
-            <small>\
-                <!-- <a href='http://www.pokemon.com/us/pokedex/" +id+ "' target='_blank' title='View in Pokedex'>#"+id+"</a> -->\
-            </small> <small><a href='pokesniper2://"+ name.replace(/[^A-Za-z0-9]/g, '') +"/"+latitude+","+longitude+"'>#</a></small>\
         </div>\
+		</br>\
         <div>\
             <!-- Disappears at " +pad(disappear_date.getHours())+ ":"+pad(disappear_date.getMinutes())+":"+pad(disappear_date.getSeconds())+" -->\
-            Disappears in <span class='label-countdown' disappears-at='"+disappear_time+"'>(00m00s)</span></div>\
-        <div>\
+            <span class='label-countdown' disappears-at='"+disappear_time+"'>(00m00s)</span>\</span> | </span>\
             <a href='https://www.google.com/maps/dir/Current+Location/"+latitude+","+longitude+"'\
-                    target='_blank' title='View in Maps'>Get Directions</a>\
-            <a href='#' onclick='removePokemon(\"" + id + "\")')>Hide</a>\
-            <a href='#' onclick='addToNotify(\"" + id + "\")')></a>\
-        </div>";
+                    target='_blank' title='View in Maps'>Maps</a>\</div>";
     return label;
 };
 
