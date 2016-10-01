@@ -8,9 +8,11 @@
 	<title>PokéLive - Realtime Pokémon Go Scan for Indonesia</title>
 	<meta name="description" content="PokeLive.asia - Cari, Kejar, dan Tangkap Pokémon Favorit mu!" />
 	<meta name="keywords" content="pokemon go, pokemon maps, pokemon go maps, pokemon go tracker, track pokemon online, pokevision, pokemon go indonesia, pokemon go scan indo, pokemap indonesia, pokemap indo"/>
-
+	
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 	<link rel="icon" type="image/png" href="static/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/static/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/component.css" />
 
 	<style>
 * {
@@ -26,158 +28,8 @@ body {
 #map {
     height: 100%;
 }
-#menuToggle {
-    display: block;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: rgba(255, 255, 255, 0.57);
-    padding: 10px 10px 5px 10px;
-    z-index: 1;
-    -webkit-user-select: none;
-    user-select: none;
-}
-#menuToggle > input {
-    display: block;
-    width: 54px;
-    height: 47px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
-    cursor: pointer;
-    opacity: 0;
-    /* hide this */
-    
-    z-index: 2;
-    /* and place it over the hamburger */
-    
-    -webkit-touch-callout: none;
-}
-/*
- * Just a quick hamburger
- */
-
-#menuToggle > span {
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
-    background: #af1414;
-    border-radius: 3px;
-    z-index: 1;
-    transform-origin: 4px 0px;
-    -webkit-transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
-    -webkit-transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
-}
-#menuToggle > span:first-child {
-    transform-origin: 0% 0%;
-    -webkit-transform-origin: 0% 0%;
-}
-#menuToggle > span:nth-last-child(2) {
-    transform-origin: 0% 100%;
-    -webkit-transform-origin: 0% 100%;
-}
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-
-#menuToggle > input:checked ~ span {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    -webkit-transform: rotate(45deg) translate(-2px, -1px);
-    background: #232323;
-}
-/*
- * But let's hide the middle one.
- */
-
-#menuToggle > input:checked ~ span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-    -webkit-transform: rotate(0deg) scale(0.2, 0.2);
-}
-/*
- * Ohyeah and the last one should go the other direction
- */
-
-#menuToggle > input:checked ~ span:nth-last-child(2) {
-    opacity: 1;
-    transform: rotate(-45deg) translate(0, -1px);
-    -webkit-transform: rotate(-45deg) translate(0, -1px);
-}
-#menuToggle > input:checked ~ div {
-    transform: scale(1.0, 1.0);
-    -webkit-transform: scale(1.0, 1.0);
-    opacity: 1;
-}
-#menu {
-    position: fixed;
-    width: 300px;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow: auto;
-    background: #ededed;
-    list-style-type: none;
-    -webkit-font-smoothing: antialiased;
-    /* to stop flickering of text in safari */
-    
-    transform-origin: 0% 0%;
-    transform: translate(-100%, 0);
-    -webkit-transform-origin: 0% 0%;
-    -webkit-transform: translate(-100%, 0);
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-    -webkit-transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-}
-#menu-container {
-    padding: 50px 20px 0 20px;
-}
-@media (max-width: 800px) {
-    #menu {
-        width: 100%;
-    }
-    #menuToggle {
-        top: 18px;
-        right: 18px;
-        left: initial;
-    }
-    #menu-container {
-        padding-top: 0;
-    }
-	.container {
-    display: block;
-    cursor: pointer;
-	z-index: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	}
-	.bottomright {
-    position: fixed;
-    bottom: 5%;
-    font-size: 18px;
-    z-index: 1;
-    -webkit-user-select: none;
-    user-select: none;
-	}
-}
 span.select2 {
     width: 100% !important;
-}
-.label-success {
-    background-color: #5cb85c;
-}
-.label-warning {
-    background-color: #f0ad4e;
-}
-.label-danger {
-    background-color: #d9534f;
-}
-.label-grey {
-    background-color: #777;
 }
 .label {
     display: block;
@@ -191,14 +43,6 @@ span.select2 {
     vertical-align: baseline;
     border-radius: .25rem;
     margin-bottom: 2px;
-}
-.current-scan-percent {
-    margin-bottom: 1px;
-}
-.num-threads,
-.num-accounts {
-    width: 49%;
-    display: inline-block;
 }
 .chckbox {
     background-color: #4CAF50; /* Green */
@@ -240,10 +84,33 @@ span.select2 {
     -webkit-user-select: none;
     user-select: none;
 }
+.containerbox {
+    display: block;
+    cursor: pointer;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.popupbox {
+    position: fixed;
+    top: 3%;
+	left: 3%;
+    font-size: 18px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 	</style>
 </head>
 
 <body>
+
+	<div class="containerboxbox" onclick="myFunction(this)"><div class="popupbox">
+	<button class="md-trigger" data-modal="modal-1">Filter</button>
+	</div></div>
+
 		<center>
 		<div class="container" onclick="myFunction(this)"><div class="bottomright">
 		<span style="font-size: 25px; color: #4CAF50;"><b>Donate via <i>PayPal</i></b></span>
@@ -255,25 +122,14 @@ span.select2 {
 		</form>
 		</div></div>
 		</center>
-		
-	<div id="menuToggle">
-		<input type="checkbox" />
 
-		<span></span>
-		<span></span>
-		<span></span>
-
-		<div id="menu">
-			<div id="menu-container">
-				<!--
-				<p style="margin: 8px 0">
-					<span class="full-scan label label-grey">No full scan yet</span>
-					<span class="current-scan-percent label label-grey">Current Scan: 0.00%</span>
-					<span class="num-threads label label-grey">0 Threads</span>
-					<span class="num-accounts label label-grey">0 Accounts</span>
-				</p>
-				-->
-				</br></br>
+	<div id="map"></div>
+	
+		<!-- All modals added here for the demo. You would of course just have one, dynamically created -->
+		<div class="md-modal md-effect-1" id="modal-1">
+			<div class="md-content">
+				<h3>Filter</h3>
+				<div>
 				<fieldset style="border: 0; padding-left: 0;">
 					<label for="pokemon-checkbox">
 					<div class="chckbox; chckbox button2">
@@ -311,33 +167,18 @@ span.select2 {
 						<select id="exclude-pokemon" multiple="multiple"></select>
 					</label>
 				</p>
-				<!--
-				<p>
-					<label for="heat-map-mons">
-						Show a heatmap of pokemons:
-						<select id="heat-map-mons" multiple="multiple"></select>
-					</label>
-				</p>
-				-->
-				<p>
-					<a href="config"></a>
-					<br />
-					<a href="stats"></a>
-				</p>
-				
-				<p style="margin: 0px 0">
-					{% if is_authenticated %}
-					<span class="auth-status label label-success" style="opacity: 0.0;">Authenticated</span> {% else %}
-					<span class="auth-status label label-warning" style="color: white; text-decoration: inherit; opacity: 0.0">Not authenticated</span> {% endif %}
-					<span class="last-request label label-warning"style="opacity: 0.0;">No scans yet</span>
-				</p>
-
+					<button class="md-close">Close me!</button>
+				</div>
 			</div>
 		</div>
-	</div>
+					
+		</div><!-- /container -->
+		<div class="md-overlay"></div><!-- the overlay element -->
 
-	<div id="map"></div>
-
+		<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+		<script src="/static/js/classie.js"></script>
+		<script src="/static/js/modalEffects.js"></script>	
+	
 </body>
 
 <script type="text/javascript">
