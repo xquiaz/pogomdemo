@@ -24,7 +24,7 @@ def parse_unicode(bytestring):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-H', '--host', help='Set web server listening host', default='127.0.0.1')
+    parser.add_argument('-H', '--host', help='Set web server listening host', default='0.0.0.0')
     parser.add_argument('-P', '--port', type=int, help='Set web server listening port', default=80)
     parser.add_argument('--db', help='Connection String to be used. (default: sqlite)',
                         default='sqlite')

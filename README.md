@@ -23,7 +23,7 @@ Everything else is configured through the Web UI!
 
 ##Usage
 
- - Visit `http://<ip>:<port>/` (by default: `http://127.0.0.1:5000/`)
+ - Visit `http://<ip>:<port>/` (by default: `http://127.0.0.1:80/`)
  - On the first run you will be redirected to a configuration page
    - Enter your Google Maps Api Key
    - Enter all accounts and passwords to be used for scanning
