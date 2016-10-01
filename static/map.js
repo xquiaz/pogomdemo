@@ -160,6 +160,7 @@ function initMap() {
         // Change this to geolocation?
         center: {lat: initLat, lng: initLng},
         zoom: 13,
+		fullscreenControl: true,
         mapTypeControl: false,
         streetViewControl: false,
         disableAutoPan: true
@@ -213,12 +214,97 @@ function initMap() {
     initGeoLocation();
 };
 
+function addCurrLocationMarker() {
+    var locationMarker = new google.maps.Marker({
+        map: map,
+        animation: google.maps.Animation.DROP,
+        position: {
+            lat: 0,
+            lng: 0
+        },
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillOpacity: 1,
+            fillColor: '#1c8af6',
+            scale: 6,
+            strokeColor: '#1c8af6',
+            strokeWeight: 8,
+            strokeOpacity: 0.3
+        }
+    })
+
+    locationMarker.setVisible(false)
+
+    return locationMarker;
+}
+
+function addMyLocationIcon(locationButton) {
+    var locationIcon = document.createElement('div')
+    locationIcon.style.margin = '5px'
+    locationIcon.style.width = '18px'
+    locationIcon.style.height = '18px'
+    locationIcon.style.backgroundImage = 'url(static/icons/mylocation-sprite-1x.png)'
+    locationIcon.style.backgroundSize = '180px 18px'
+    locationIcon.style.backgroundPosition = '0px 0px'
+    locationIcon.style.backgroundRepeat = 'no-repeat'
+    locationIcon.id = 'current-location-icon'
+    locationButton.appendChild(locationIcon)
+
+    return locationIcon;
+}
+
+function addMyLocationButton() {
+    var locationContainer = document.createElement('div')
+
+    var locationButton = document.createElement('button')
+    locationButton.style.backgroundColor = '#fff'
+    locationButton.style.border = 'none'
+    locationButton.style.outline = 'none'
+    locationButton.style.width = '28px'
+    locationButton.style.height = '28px'
+    locationButton.style.borderRadius = '2px'
+    locationButton.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)'
+    locationButton.style.cursor = 'pointer'
+    locationButton.style.marginRight = '10px'
+    locationButton.style.padding = '0px'
+    locationButton.title = 'Your Location'
+    locationContainer.appendChild(locationButton)
+
+    locationContainer.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(locationContainer);
+
+    return locationButton;
+}
+
+function centerMapOnLocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        map.setCenter(latlng);
+    });
+}
+
 function initGeoLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
+    if (!navigator.geolocation) return;
+
+    var locationButton = addMyLocationButton();
+    var locationIcon = addMyLocationIcon(locationButton);
+    var locationMarker = addCurrLocationMarker();
+    var watchId;
+
+    locationButton.addEventListener('click', function () {
+        if (watchId) { navigator.geolocation.clearWatch(watchId) };
+        centerMapOnLocation();
+        locationIcon.style.backgroundPosition = '-144px 0px';
+        locationMarker.setVisible(true);
+        map.setZoom(15);
+
+        watchId = navigator.geolocation.watchPosition(function(position) {
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            locationMarker.setPosition(latlng);
         });
-    }
+    });
+
+    centerMapOnLocation();
 }
 
 function pokemonLabel(name, id, disappear_time, latitude, longitude) {
