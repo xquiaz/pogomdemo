@@ -11,6 +11,8 @@
 	
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 	<link rel="icon" type="image/png" href="static/favicon.ico">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
 	<style>
 * {
@@ -25,89 +27,6 @@ body {
 }
 #map {
     height: 100%;
-}
-#menuToggle {
-    display: block;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: rgba(255, 255, 255, 0.57);
-    padding: 10px 10px 5px 10px;
-    z-index: 1;
-    -webkit-user-select: none;
-    user-select: none;
-}
-#menuToggle > input {
-    display: block;
-    width: 54px;
-    height: 47px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
-    cursor: pointer;
-    opacity: 0;
-    /* hide this */
-    
-    z-index: 2;
-    /* and place it over the hamburger */
-    
-    -webkit-touch-callout: none;
-}
-/*
- * Just a quick hamburger
- */
-#menuToggle > span {
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
-    background: #af1414;
-    border-radius: 3px;
-    z-index: 1;
-    transform-origin: 4px 0px;
-    -webkit-transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
-    -webkit-transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
-}
-#menuToggle > span:first-child {
-    transform-origin: 0% 0%;
-    -webkit-transform-origin: 0% 0%;
-}
-#menuToggle > span:nth-last-child(2) {
-    transform-origin: 0% 100%;
-    -webkit-transform-origin: 0% 100%;
-}
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle > input:checked ~ span {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    -webkit-transform: rotate(45deg) translate(-2px, -1px);
-    background: #232323;
-}
-/*
- * But let's hide the middle one.
- */
-#menuToggle > input:checked ~ span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-    -webkit-transform: rotate(0deg) scale(0.2, 0.2);
-}
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle > input:checked ~ span:nth-last-child(2) {
-    opacity: 1;
-    transform: rotate(-45deg) translate(0, -1px);
-    -webkit-transform: rotate(-45deg) translate(0, -1px);
-}
-#menuToggle > input:checked ~ div {
-    transform: scale(1.0, 1.0);
-    -webkit-transform: scale(1.0, 1.0);
-    opacity: 1;
 }
 #menu {
     position: fixed;
@@ -235,41 +154,39 @@ span.select2 {
     -webkit-user-select: none;
     user-select: none;
 }
+.filterbox {
+    display: block;
+    cursor: pointer;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.filterbox2 {
+    position: fixed;
+    left: 3%;
+	top: 3%;
+    font-size: 18px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
 	</style>
 </head>
 
 <body>
-		<center>
-		<div class="container" onclick="myFunction(this)"><div class="bottomright">
-		<span style="font-size: 25px; color: #4CAF50;"><b>Donate via <i>PayPal</i></b></span>
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-		<input type="hidden" name="cmd" value="_s-xclick" />
-		<input type="hidden" name="hosted_button_id" value="GLR6RDFQ4BRRQ" />
-		<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate" />
-		<img align="middle" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-		</form>
-		</div></div>
-		</center>
-		
-	<div id="menuToggle">
-		<input type="checkbox" />
 
-		<span></span>
-		<span></span>
-		<span></span>
+<!-- -->
+<div class="w3-container">
+	<div class="filterbox" onclick="myFunction(this)"><div class="filterbox2">
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-green w3-large"><i class="fa fa-search"></i> Filter</button>
+	</div></div>
 
-		<div id="menu">
-			<div id="menu-container">
-				<!--
-				<p style="margin: 8px 0">
-					<span class="full-scan label label-grey">No full scan yet</span>
-					<span class="current-scan-percent label label-grey">Current Scan: 0.00%</span>
-					<span class="num-threads label label-grey">0 Threads</span>
-					<span class="num-accounts label label-grey">0 Accounts</span>
-				</p>
-				-->
-				</br></br>
-				<fieldset style="border: 0; padding-left: 0;">
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+      <form class="w3-container" action="form.asp">
+        <div class="w3-section">
+          <fieldset style="border: 0; padding-left: 0;">
 					<label for="pokemon-checkbox">
 					<div class="chckbox; chckbox button2">
 					<input type="checkbox" id="pokemon-checkbox">Display Pokemon
@@ -292,11 +209,6 @@ span.select2 {
 					<div class="chckbox; chckbox button2">
 					<input type="checkbox" id="gyms-checkbox">Display Gyms
 					</div>
-					</label></br></br>
-					<label for="coverage-checkbox">
-					<div style="opacity: 0.0;">
-					<input type="checkbox" id="coverage-checkbox">Show Map Coverage
-					</div>
 					</label>
 				</fieldset>
 
@@ -306,6 +218,51 @@ span.select2 {
 						<select id="exclude-pokemon" multiple="multiple"></select>
 					</label>
 				</p>
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- -->
+
+		<center>
+		<div class="container" onclick="myFunction(this)"><div class="bottomright">
+		<span style="font-size: 25px; color: #4CAF50;"><b>Donate via <i>PayPal</i></b></span>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		<input type="hidden" name="cmd" value="_s-xclick" />
+		<input type="hidden" name="hosted_button_id" value="GLR6RDFQ4BRRQ" />
+		<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate" />
+		<img align="middle" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+		</form>
+		</div></div>
+		</center>
+		
+	<div id="menuToggle">
+
+		<div id="menu">
+			<div id="menu-container">
+				<!--
+				<p style="margin: 8px 0">
+					<span class="full-scan label label-grey">No full scan yet</span>
+					<span class="current-scan-percent label label-grey">Current Scan: 0.00%</span>
+					<span class="num-threads label label-grey">0 Threads</span>
+					<span class="num-accounts label label-grey">0 Accounts</span>
+				</p>
+				-->
+				</br></br>
+				    <fieldset style="border: 0; padding-left: 0;">
+					</label></br></br>
+					<label for="coverage-checkbox">
+					<div style="opacity: 0.0;">
+					<input type="checkbox" id="coverage-checkbox">Show Map Coverage
+					</div>
+					</label>
+				</fieldset>
 				<!--
 				<p>
 					<label for="heat-map-mons">
@@ -314,11 +271,6 @@ span.select2 {
 					</label>
 				</p>
 				-->
-				<p>
-					<a href="config"></a>
-					<br />
-					<a href="stats"></a>
-				</p>
 				
 				<p style="margin: 0px 0">
 					{% if is_authenticated %}
