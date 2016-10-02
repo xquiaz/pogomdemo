@@ -26,7 +26,7 @@ body {
     font-family: "Avenir Next", "Avenir", sans-serif;
 }
 #map {
-    height: 100%;
+    height: 99.8%;
 }
 #menu {
     position: fixed;
@@ -164,13 +164,31 @@ span.select2 {
 }
 .filterbox2 {
     position: fixed;
-    left: 3%;
+    left: 15px;
 	top: 3%;
     font-size: 18px;
     z-index: 1;
     -webkit-user-select: none;
     user-select: none;
 }
+.donatebox {
+    display: block;
+    cursor: pointer;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.donatebox2 {
+    position: fixed;
+    left: 110px;
+	top: 3%;
+    font-size: 18px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.city {display:none}
 	</style>
 </head>
 
@@ -179,7 +197,7 @@ span.select2 {
 <!-- -->
 <div class="w3-container">
 	<div class="filterbox" onclick="myFunction(this)"><div class="filterbox2">
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-green w3-large"><i class="fa fa-search"></i> Filter</button>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-green w3-large"><i class="fa fa-filter"></i> Filter</button>
 	</div></div>
 
   <div id="id01" class="w3-modal">
@@ -285,6 +303,72 @@ span.select2 {
 
 	<div id="map"></div>
 
+<div class="w3-container">
+<div class="donatebox" onclick="myFunction(this)"><div class="donatebox2">
+<button onclick="document.getElementById('id02').style.display='block'" class="w3-btn w3-blue"><i class="fa fa-cc-visa"></i> <i class="fa fa-cc-paypal"></i> Donate</button>
+</div></div>
+
+<div id="id02" class="w3-modal">
+ <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+
+  <ul class="w3-pagination w3-white w3-border-bottom" style="width:100%;">
+   <li><a href="#" class="tablink" onclick="openCity(event, 'Donate')">Donate</a></li>
+   <li><a href="#" class="tablink" onclick="openCity(event, 'Contact Us')">Contact Us</a></li>
+   <li><a href="#" class="tablink" onclick="openCity(event, 'FAQ')">FAQ</a></li>
+  </ul>
+
+  <div id="Donate" class="w3-container city">
+   <p><center><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/ATM_Bersama.png/200px-ATM_Bersama.png" height="100px"</center></p>
+     <span style="font-size: 15px; color: #000;"><b>Bank BTN: 00264-01-61-003912-8</b></span>
+   <p>  <center>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="GLR6RDFQ4BRRQ" />
+  <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate" />
+  <img align="middle" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+  </form>
+<span style="font-size: 15px; color: #000;"><b><i>PayPal</i></b></span>
+  </center>
+  </p>
+  </div>
+
+  <div id="Contact Us" class="w3-container city">
+   <p>E-mail: tyci566@yahoo.com</p>
+   <p>Line ID: pokemap</p>
+  </div>
+
+  <div id="FAQ" class="w3-container city">
+   <h1>PokeLive.asia</h1>
+   <p>Cari, Kejar, dan Tangkap Pokémon Favorit mu!</p><br>
+  </div>
+
+  <div class="w3-container w3-light-grey w3-padding">
+   <button class="w3-btn w3-right w3-white w3-border"
+   onclick="document.getElementById('id02').style.display='none'">Close</button>
+  </div>
+ </div>
+</div>
+
+</div>
+
+<script>
+document.getElementsByClassName("tablink")[0].click();
+
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].classList.remove("w3-light-grey");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.classList.add("w3-light-grey");
+}
+</script>
+	
 </body>
 
 <script type="text/javascript">
